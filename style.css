@@ -1,0 +1,402 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0b0e14; 
+    color: #ffffff; 
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar { 
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-menu-row {
+    padding: 20px 50px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.navbar .brand { 
+    font-weight: 800; 
+    font-size: 24px; 
+    color: #0284c7; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.navbar .menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .menu a { 
+    color: #e5e5e5; 
+    text-decoration: none; 
+    margin-right: 25px; 
+    font-weight: 600; 
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.navbar .menu a:not(.btn-login-nav):hover, .navbar .menu a.active { 
+    color: #ffffff; 
+}
+
+.btn-login-nav {
+    background-color: #0284c7 !important;
+    color: white !important;
+    padding: 8px 18px !important;
+    border-radius: 6px !important;
+    margin-right: 0 !important;
+}
+.btn-login-nav:hover {
+    background-color: #0369a1 !important;
+}
+
+/* CONTAINER UTAMA (Diubah jadi flex-col agar elemen bawah tidak kepisah ke samping) */
+.container { 
+    padding: 160px 50px 50px 50px; 
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    gap: 40px; 
+    background: radial-gradient(circle at 40% 30%, #141b29 0%, #0b0e14 70%);
+}
+
+/* HERO SECTION (Khusus Bagian Atas: Info Portal & Chatbot Berjajar) */
+.hero-section {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+/* SISI KIRI: INFO PORTAL */
+.main-content { 
+    flex: 1.3; 
+    padding-right: 20px;
+}
+
+.badge {
+    background-color: #10b981;
+    color: white;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-style: italic;
+    color: #b3b3b3;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+h1 { 
+    font-size: 40px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
+}
+
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    color: #a3a3a3;
+    margin-bottom: 20px;
+}
+
+.meta-info .rating { color: #ffad1d; font-weight: 700; }
+
+.meta-info .status-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    border: 1px solid #10b981;
+}
+
+.description { 
+    font-size: 15px; 
+    color: #cccccc; 
+    line-height: 1.6; 
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.btn-action { 
+    background-color: #0284c7; 
+    color: white; 
+    padding: 14px 28px; 
+    font-size: 15px; 
+    font-weight: 700; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.btn-action:hover { 
+    background-color: #0369a1; 
+}
+
+
+/* SISI KANAN: CHATBOT */
+.chat-sidebar { 
+    flex: 0.9; 
+    background: #111111; 
+    border-radius: 12px; 
+    border: 1px solid #222222;
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    height: 520px; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.chat-header { 
+    background: #181818; 
+    color: white; 
+    padding: 18px; 
+    text-align: left; 
+    font-weight: 700; 
+    font-size: 15px;
+    border-bottom: 1px solid #222222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+}
+
+.chat-box { 
+    flex: 1; 
+    padding: 20px; 
+    overflow-y: auto; 
+    border-bottom: 1px solid #222222; 
+    font-size: 13.5px; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message { 
+    margin-bottom: 15px; 
+    padding: 12px 16px; 
+    border-radius: 8px; 
+    max-width: 85%; 
+    white-space: pre-line; 
+    line-height: 1.4;
+}
+
+.user { 
+    background: #0284c7; 
+    color: #ffffff;
+    margin-left: auto; 
+    text-align: left; 
+}
+
+.bot { 
+    background: #222222; 
+    color: #e5e5e5;
+    text-align: left; 
+}
+
+.input-group { display: flex; padding: 15px; background: #181818; gap: 10px; }
+
+.input-group input { 
+    flex: 1; 
+    padding: 12px; 
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #333333; 
+    border-radius: 6px; 
+    outline: none; 
+    font-size: 13px;
+}
+
+.input-group input::placeholder { color: #777777; }
+
+.input-group button { 
+    padding: 12px 20px; 
+    background: #0284c7; 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    font-weight: 600;
+    cursor: pointer; 
+    font-size: 13px;
+}
+
+.input-group button:hover { background-color: #0369a1; }
+
+
+/* Style untuk Pengumuman Berjalan */
+.running-text-container {
+    background: #111111;
+    border-top: 1px solid #222222;
+    border-bottom: 1px solid #222222;
+    padding: 10px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.running-text-label {
+    background: #0284c7;
+    color: #ffffff;
+    padding: 5px 15px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.running-text-content {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    overflow: hidden;
+}
+
+.running-text-content span {
+    margin-right: 50px; 
+}
+
+.running-text-content strong {
+    color: #0284c7; 
+}
+
+
+/* LAYOUT SIDEBAR & SECTION BAWAH */
+.content-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.main-table-content {
+    flex: 2.3;
+    min-width: 0;
+}
+
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-width: 320px;
+}
+
+.side-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.side-card h3 {
+    color: #0284c7;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #222222;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.side-card p {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+.contact-item {
+    margin-bottom: 15px;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item strong {
+    font-size: 14px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.contact-item p {
+    font-size: 13px;
+    color: #aaaaaa;
+    line-height: 1.5;
+}
+
+
+/* Responsif untuk layar kecil */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+    }
+    .content-layout {
+        flex-direction: column;
+    }
+    .main-table-content, .sidebar-content {
+        width: 100%;
+        flex: none;
+    }
+    .container { 
+        padding: 160px 20px 20px 20px; 
+    }
+    .navbar-menu-row { 
+        padding: 20px; 
+    }
+    h1 { 
+        font-size: 38px; 
+    }
+    .chat-sidebar { 
+        width: 100%; 
+        height: 450px; 
+    }
+}

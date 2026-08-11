@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rusun_klender_web
+    ports:
+      - "8104:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=secretpassword
+      - DB_NAME=rusun_klender
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - rusun_net
+
+  db:
+    image: mariadb:10.4
+    container_name: rusun_klender_db
+    ports:
+      - "3105:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=secretpassword
+      - MARIADB_DATABASE=rusun_klender
+    volumes:
+      - db_data:/var/lib/mysql
+      # Mount the sql dump to docker-entrypoint-initdb.d so it imports automatically on container start
+      - "./rusun_klender (3).sql:/docker-entrypoint-initdb.d/init.sql:ro"
+    networks:
+      - rusun_net
+
+volumes:
+  db_data:
+
+networks:
+  rusun_net:
+    driver: bridge
