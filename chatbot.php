@@ -194,7 +194,7 @@ try {
         }
     }
 
-    $url = "https://coherence-elf-urchin.ngrok-free.dev/api/generate";
+    $url = "http://ollama:11434/api/generate";
     
     $system_prompt = "Anda adalah Asisten Virtual resmi Rumah Susun Klender RT 008. 
 Gaya bahasa Anda ramah, to the point, natural, dan profesional.
@@ -209,7 +209,7 @@ ATURAN MUTLAK PENULISAN JAWABAN:
 " . $context_data;
 
     $payload = [
-        "model" => "llama3",
+        "model" => "llama3.2:1b",
         "prompt" => "Pertanyaan Pengguna: " . $user_message,
         "system" => $system_prompt,
         "stream" => false

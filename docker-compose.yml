@@ -35,8 +35,31 @@ services:
     networks:
       - rusun_net
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: rusun_klender_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - rusun_net
+    restart: unless-stopped
+
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: rusun_klender_ollama_pull
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - rusun_net
+    entrypoint: [ "sh", "-c", "sleep 5 && ollama pull llama3.2:1b" ]
+    depends_on:
+      - ollama
+
 volumes:
   db_data:
+  ollama_data:
 
 networks:
   rusun_net:
