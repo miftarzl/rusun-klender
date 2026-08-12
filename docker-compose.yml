@@ -53,6 +53,8 @@ services:
       - ollama_data:/root/.ollama
     networks:
       - rusun_net
+    environment:
+      - OLLAMA_HOST=ollama
     entrypoint: [ "sh", "-c", "sleep 5 && ollama pull llama3.2:1b" ]
     depends_on:
       - ollama
