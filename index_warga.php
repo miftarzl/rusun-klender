@@ -147,7 +147,7 @@ $unit_kosong = ($res_unit) ? $res_unit->fetch_assoc()['unit_kosong'] : 0;
             align-items: center;
             padding: 40px 50px;
             box-sizing: border-box;
-            background: linear-gradient(rgba(11, 14, 20, 0.75), rgba(11, 14, 20, 0.88)), url('assets/img/eyJidWNrZXQiOiJwcmQtbGlmdWxsY29ubmVjdC1iYWNrZW5kLWIyYi1pbWFnZXMiLCJrZXkiOiJpbmdlc3Rlci8wMTk5OWIzYS1mYzcwLTc3ZWMtOGEyNS1kOTBkMjA5YzFkZGQvODBkM2I5YTNmMWYwZTU3OGQ1YTc3NDhmNDMyOGEzMjY4OTExMDU3NTFhYzM3ODhmNzQwZWYwMzk4ZWNj.jpg') no-repeat center center;
+            background: linear-gradient(rgba(11, 14, 20, 0.75), rgba(11, 14, 20, 0.88)), url('assets/img/rusun klender.jpeg') no-repeat center center;
             background-size: cover;
         }
 

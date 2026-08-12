@@ -13,16 +13,16 @@ $error_message = "";
 
 // Proses Tambah Data Warga Baru
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'tambah_warga') {
-    $nik            = $_POST['nik'];
-    $no_kk          = $_POST['no_kk'];
-    $nama           = $_POST['nama'];
-    $tempat_lahir   = $_POST['tempat_lahir'];
-    $tanggal_lahir  = $_POST['tanggal_lahir'];
-    $jenis_kelamin  = $_POST['jenis_kelamin'];
-    $agama          = $_POST['agama'];
-    $pekerjaan      = $_POST['pekerjaan'];
-    $alamat         = $_POST['alamat'];
-    $status_tinggal = $_POST['status_tinggal'];
+    $nik            = $_POST['nik'] ?? '';
+    $no_kk          = $_POST['no_kk'] ?? '';
+    $nama           = $_POST['nama'] ?? '';
+    $tempat_lahir   = $_POST['tempat_lahir'] ?? '';
+    $tanggal_lahir  = $_POST['tanggal_lahir'] ?? '';
+    $jenis_kelamin  = $_POST['jenis_kelamin'] ?? '';
+    $agama          = $_POST['agama'] ?? '';
+    $pekerjaan      = $_POST['pekerjaan'] ?? '';
+    $alamat         = $_POST['alamat'] ?? '';
+    $status_tinggal = $_POST['status_tinggal'] ?? '';
 
     $stmt = $conn->prepare("INSERT INTO warga (nik, no_kk, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, pekerjaan, alamat, status_tinggal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssss", $nik, $no_kk, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pekerjaan, $alamat, $status_tinggal);
@@ -37,17 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 // Proses Update Data Warga jika Form Edit disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit_warga') {
-    $nik_lama       = $_POST['nik_lama'];
-    $nik            = $_POST['nik'];
-    $no_kk          = $_POST['no_kk'];
-    $nama           = $_POST['nama'];
-    $tempat_lahir   = $_POST['tempat_lahir'];
-    $tanggal_lahir  = $_POST['tanggal_lahir'];
-    $jenis_kelamin  = $_POST['jenis_kelamin'];
-    $agama          = $_POST['agama'];
-    $pekerjaan      = $_POST['pekerjaan'];
-    $alamat         = $_POST['alamat'];
-    $status_tinggal = $_POST['status_tinggal'];
+    $nik_lama       = $_POST['nik_lama'] ?? '';
+    $nik            = $_POST['nik'] ?? '';
+    $no_kk          = $_POST['no_kk'] ?? '';
+    $nama           = $_POST['nama'] ?? '';
+    $tempat_lahir   = $_POST['tempat_lahir'] ?? '';
+    $tanggal_lahir  = $_POST['tanggal_lahir'] ?? '';
+    $jenis_kelamin  = $_POST['jenis_kelamin'] ?? '';
+    $agama          = $_POST['agama'] ?? '';
+    $pekerjaan      = $_POST['pekerjaan'] ?? '';
+    $alamat         = $_POST['alamat'] ?? '';
+    $status_tinggal = $_POST['status_tinggal'] ?? '';
 
     $stmt = $conn->prepare("UPDATE warga SET nik=?, no_kk=?, nama=?, tempat_lahir=?, tanggal_lahir=?, jenis_kelamin=?, agama=?, pekerjaan=?, alamat=?, status_tinggal=? WHERE nik=?");
     $stmt->bind_param("sssssssssss", $nik, $no_kk, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pekerjaan, $alamat, $status_tinggal, $nik_lama);
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 // Proses Hapus Data Warga
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'hapus_warga') {
-    $nik = $_POST['nik'];
+    $nik = $_POST['nik'] ?? '';
 
     $stmt = $conn->prepare("DELETE FROM warga WHERE nik = ?");
     $stmt->bind_param("s", $nik);
@@ -117,7 +117,6 @@ if ($search !== '') {
             color: #0284c7 !important;
         }
 
-        /* STYLING TOMBOL LOGOUT BIRU (SERUPA INDEX_ADMIN.PHP) */
         .btn-logout {
             background: linear-gradient(135deg, #0284c7, #0369a1) !important;
             color: white !important;
@@ -271,7 +270,6 @@ if ($search !== '') {
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
-        /* SEARCH BAR STYLES */
         .search-container {
             display: flex;
             gap: 10px;
@@ -288,7 +286,6 @@ if ($search !== '') {
         }
         .search-input:focus { outline: none; border-color: #0284c7; }
 
-        /* MODAL POPUP STYLES */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px); overflow-y: auto; padding: 20px; }
         .modal-card { background: #141416; border: 1px solid #0284c7; border-radius: 10px; width: 100%; max-width: 520px; padding: 25px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); position: relative; animation: fadeIn 0.3s ease-in-out; margin: auto; }
         @keyframes fadeIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -299,7 +296,6 @@ if ($search !== '') {
         .modal-close-btn:hover { color: #ffffff; }
         .modal-footer { margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px; }
 
-        /* FORM STYLES DI DALAM MODAL */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 12px; font-weight: 600; color: #a1a1aa; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
         .form-control { width: 100%; padding: 10px 14px; background: #1a1a1e; border: 1px solid #232326; border-radius: 6px; color: #fff; font-size: 14px; box-sizing: border-box; }
@@ -317,9 +313,8 @@ if ($search !== '') {
             <a href="warga.php" class="active" style="margin-left: 20px;">Data Warga</a>
             <a href="admin_surat.php" style="margin-left: 20px;">Urus Dokumen</a>
             <a href="admin_iuran.php" style="margin-left: 20px;">Kelola Iuran</a>
-            <span style="color: #10b981; font-weight: 600; margin-left: 15px;">Admin: <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+            <span style="color: #10b981; font-weight: 600; margin-left: 15px;">Admin: <?php echo htmlspecialchars($_SESSION['username'] ?? ''); ?></span>
 
-            <!-- Tombol Logout Bergradasi Biru -->
             <a href="logout.php" class="btn-logout">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                 Logout
@@ -348,7 +343,6 @@ if ($search !== '') {
             <div class="alert-error"><?php echo $error_message; ?></div>
         <?php endif; ?>
 
-        <!-- Form Pencarian Warga -->
         <form method="GET" action="" class="search-container">
             <input type="text" name="search" class="search-input" placeholder="Cari berdasarkan NIK, Nama, Alamat, atau Pekerjaan..." value="<?php echo htmlspecialchars($search); ?>">
             <button type="submit" class="btn-action" style="padding: 10px 20px;">Cari</button>
@@ -374,17 +368,17 @@ if ($search !== '') {
                         <?php if ($result && $result->num_rows > 0): ?>
                             <?php while($row = $result->fetch_assoc()): ?>
                             <?php 
-                                $nik_secure = htmlspecialchars($row['nik']);
-                                $nama_tampil = htmlspecialchars($row['nama']);
-                                $jk = htmlspecialchars($row['jenis_kelamin'] ? $row['jenis_kelamin'] : '-');
-                                $pekerjaan = htmlspecialchars($row['pekerjaan'] ? $row['pekerjaan'] : '-');
-                                $alamat = htmlspecialchars($row['alamat'] ? $row['alamat'] : '-');
+                                $nik_secure     = htmlspecialchars($row['nik'] ?? '');
+                                $nama_tampil    = htmlspecialchars($row['nama'] ?? '');
+                                $jk             = htmlspecialchars($row['jenis_kelamin'] ?? '-');
+                                $pekerjaan      = htmlspecialchars($row['pekerjaan'] ?? '-');
+                                $alamat         = htmlspecialchars($row['alamat'] ?? '-');
                                 
-                                $no_kk = htmlspecialchars($row['no_kk']);
-                                $tempat_lahir = htmlspecialchars($row['tempat_lahir']);
-                                $tanggal_lahir = htmlspecialchars($row['tanggal_lahir']);
-                                $agama = htmlspecialchars($row['agama']);
-                                $status_tinggal = htmlspecialchars($row['status_tinggal']);
+                                $no_kk          = htmlspecialchars($row['no_kk'] ?? '');
+                                $tempat_lahir   = htmlspecialchars($row['tempat_lahir'] ?? '');
+                                $tanggal_lahir  = htmlspecialchars($row['tanggal_lahir'] ?? '');
+                                $agama          = htmlspecialchars($row['agama'] ?? '');
+                                $status_tinggal = htmlspecialchars($row['status_tinggal'] ?? '');
                             ?>
                                 <tr>
                                     <td><strong style="color: #10b981;"><?php echo $nik_secure; ?></strong></td>
@@ -394,16 +388,16 @@ if ($search !== '') {
                                     <td><span class='unit-badge'><?php echo $alamat; ?></span></td>
                                     <td style="text-align: center;">
                                         <button class="btn-detail" onclick="openProfileModal(
-                                            '<?php echo addslashes($row['nik']); ?>',
-                                            '<?php echo addslashes($no_kk); ?>',
-                                            '<?php echo addslashes($nama_tampil); ?>',
-                                            '<?php echo addslashes($tempat_lahir); ?>',
-                                            '<?php echo addslashes($tanggal_lahir); ?>',
-                                            '<?php echo addslashes($jk); ?>',
-                                            '<?php echo addslashes($agama); ?>',
-                                            '<?php echo addslashes($pekerjaan); ?>',
-                                            '<?php echo addslashes($alamat); ?>',
-                                            '<?php echo addslashes($status_tinggal); ?>'
+                                            '<?php echo addslashes($row['nik'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['no_kk'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['nama'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['tempat_lahir'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['tanggal_lahir'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['jenis_kelamin'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['agama'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['pekerjaan'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['alamat'] ?? ''); ?>',
+                                            '<?php echo addslashes($row['status_tinggal'] ?? ''); ?>'
                                         )">Lihat Profil</button>
                                     </td>
                                 </tr>
@@ -420,9 +414,6 @@ if ($search !== '') {
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- MODAL 1: LIHAT PROFIL & TOMBOL EDIT/HAPUS  -->
-<!-- ========================================== -->
 <div class="modal-overlay" id="profileModal">
     <div class="modal-card">
         <button class="modal-close-btn" onclick="closeProfileModal()">×</button>
@@ -432,9 +423,6 @@ if ($search !== '') {
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- MODAL 2: FORM TAMBAH WARGA BARU            -->
-<!-- ========================================== -->
 <div class="modal-overlay" id="addModal">
     <div class="modal-card">
         <button class="modal-close-btn" onclick="closeAddModal()">×</button>
@@ -496,9 +484,6 @@ if ($search !== '') {
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- MODAL 3: FORM EDIT WARGA                   -->
-<!-- ========================================== -->
 <div class="modal-overlay" id="editModal">
     <div class="modal-card">
         <button class="modal-close-btn" onclick="closeEditModal()">×</button>
@@ -561,9 +546,6 @@ if ($search !== '') {
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- FORM HIDDEN UNTUK HAPUS DATA               -->
-<!-- ========================================== -->
 <form id="deleteForm" method="POST" action="" style="display: none;">
     <input type="hidden" name="action" value="hapus_warga">
     <input type="hidden" name="nik" id="delete_nik">

@@ -20,7 +20,11 @@ try {
     elseif (isset($mysqli) && $mysqli) $active_conn = $mysqli;
 
     if (!$active_conn) {
-        $active_conn = @mysqli_connect("localhost", "root", "", "rusun_klender");
+        $host = getenv('DB_HOST') ?: "localhost";
+        $user = getenv('DB_USER') ?: "root";
+        $pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "";
+        $db   = getenv('DB_NAME') ?: "rusun_klender";
+        $active_conn = @mysqli_connect($host, $user, $pass, $db);
     }
 
     $input = json_decode(file_get_contents('php://input'), true);
@@ -190,7 +194,7 @@ try {
         }
     }
 
-    $url = "http://127.0.0.1:11434/api/generate";
+    $url = "https://coherence-elf-urchin.ngrok-free.dev/api/generate";
     
     $system_prompt = "Anda adalah Asisten Virtual resmi Rumah Susun Klender RT 008. 
 Gaya bahasa Anda ramah, to the point, natural, dan profesional.
